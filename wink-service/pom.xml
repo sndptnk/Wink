@@ -23,10 +23,20 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-rs-service-description</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>javax.ws.rs</groupId>
@@ -36,18 +46,22 @@
 			<groupId>com.fasterxml.jackson.jaxrs</groupId>
 			<artifactId>jackson-jaxrs-json-provider</artifactId>
 		</dependency>
-		<!-- <dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-bundle-jaxrs</artifactId>
-		</dependency> -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-rs-service-description-swagger</artifactId>
-			<version>3.1.7</version>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+		<!-- <dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-api</artifactId> 
+			<version>1.5.8</version> </dependency> <dependency> <groupId>org.slf4j</groupId> 
+			<artifactId>slf4j-log4j12</artifactId> <version>1.5.8</version> </dependency> 
+			<dependency> <groupId>log4j</groupId> <artifactId>log4j</artifactId> <version>1.2.14</version> 
+			</dependency> -->
 	</dependencies>
 </project>

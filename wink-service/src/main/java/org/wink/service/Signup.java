@@ -6,6 +6,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.wink.service.model.SignInRequest;
+
 
 @Path("/signup")
 @Produces(MediaType.APPLICATION_JSON)
@@ -13,5 +15,5 @@ import javax.ws.rs.core.MediaType;
 public interface Signup {
 
 	@GET
-	public String signIn();
+	public String signIn(SignInRequest signInRequest);
 }

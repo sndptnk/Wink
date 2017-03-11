@@ -5,15 +5,21 @@
 		http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
-	<bean id="signup" class="org.wink.service.impl.SignUpImpl" />
 	<bean id="jaxbJsonProvider"
 		class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider" />
 	<jaxrs:server id="winkServer" address="/wink">
 		<jaxrs:serviceBeans>
-			<ref bean="signup" />
+			<bean class="org.wink.service.impl.SignUpImpl" />
+			<bean class="org.wink.service.impl.DummyServiceImpl"/>
 		</jaxrs:serviceBeans>
 		<jaxrs:providers>
 			<ref bean="jaxbJsonProvider" />
 		</jaxrs:providers>
+		<jaxrs:inInterceptors>
+			<bean class="org.apache.cxf.interceptor.LoggingInInterceptor"/>
+		</jaxrs:inInterceptors>
+		<jaxrs:outInterceptors>
+			<bean class="org.apache.cxf.interceptor.LoggingOutInterceptor"/>
+		</jaxrs:outInterceptors>
 	</jaxrs:server>
 </beans>

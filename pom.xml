@@ -6,33 +6,63 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>smart/wink integration</name>
+	<repositories>
+		<repository>
+			<id>mvnrepo</id>
+			<url>https://mvnrepository.com/artifact</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+		<repository>
+			<id>central</id>
+			<url>https://repo1.maven.org/maven2</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+	</repositories>
 	<properties>
 		<pubnub.ver>4.5.0</pubnub.ver>
 		<spring.ver>4.3.6.RELEASE</spring.ver>
-		<cxf.ver>2.7.7</cxf.ver>
+		<cxf.ver>3.1.4</cxf.ver>
 		<javax.ws.rs.ver>2.0.1</javax.ws.rs.ver>
 		<jackson.ver>2.2.3</jackson.ver>
+		<logback.ver>1.2.1</logback.ver>
+		<slf4j.ver>1.7.22</slf4j.ver>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-framework-bom</artifactId>
+				<version>4.3.6.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 			<dependency>
 				<groupId>com.pubnub</groupId>
 				<artifactId>pubnub-gson</artifactId>
 				<version>${pubnub.ver}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-beans</artifactId>
-				<version>${spring.ver}</version>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+				<version>${slf4j.ver}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-web</artifactId>
-				<version>${spring.ver}</version>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${logback.ver}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.cxf</groupId>
 				<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+				<version>${cxf.ver}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-rs-service-description</artifactId>
 				<version>${cxf.ver}</version>
 			</dependency>
 			<dependency>
@@ -44,7 +74,6 @@
 				<groupId>com.fasterxml.jackson.jaxrs</groupId>
 				<artifactId>jackson-jaxrs-json-provider</artifactId>
 				<version>${jackson.ver}</version>
-				<scope>runtime</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.cxf</groupId>
@@ -57,6 +86,8 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
+			<!-- <dependency> <groupId>org.apache.cxf</groupId> <artifactId>cxf-rt-rs-client</artifactId> 
+				<version>${cxf.ver}</version> </dependency> -->
 		</dependencies>
 	</dependencyManagement>
 	<build>
