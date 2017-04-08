@@ -2,19 +2,16 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:jaxrs-client="http://cxf.apache.org/jaxrs-client"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	xmlns:core="http://cxf.apache.org/core"
+	xsi:schemaLocation="http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://cxf.apache.org/jaxrs-client http://cxf.apache.org/schemas/jaxrs-client.xsd">
-
-	<jaxrs-client:client id="winkOAuthService" address="https://api.wink.com" serviceClass="org.wink.service.OAuthService">
-		<jaxrs-client:providers>
-			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider" />
-		</jaxrs-client:providers>
-		<jaxrs-client:inInterceptors>
+	<core:bus>
+		<core:inInterceptors>
 			<bean class="org.apache.cxf.interceptor.LoggingInInterceptor" />
-		</jaxrs-client:inInterceptors>
-		<jaxrs-client:outInterceptors>
+		</core:inInterceptors>
+		<core:outInterceptors>
 			<bean class="org.apache.cxf.interceptor.LoggingOutInterceptor" />
-		</jaxrs-client:outInterceptors>
-	</jaxrs-client:client>
-
+		</core:outInterceptors>
+	</core:bus>
 </beans>

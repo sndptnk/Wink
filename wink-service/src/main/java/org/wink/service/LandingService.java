@@ -7,7 +7,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.wink.service.model.Credentials;
+import org.wink.service.model.TokenPayload;
 
 @Path("/landing")
 @Produces(MediaType.APPLICATION_JSON)
@@ -15,5 +15,5 @@ import org.wink.service.model.Credentials;
 public interface LandingService {
 	
 	@GET
-	public Credentials getAccess(@QueryParam("state") String state, @QueryParam("code") String code);
+	public TokenPayload getAccess(@QueryParam("state") String state, @QueryParam("code") String code);
 }
