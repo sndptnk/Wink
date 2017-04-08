@@ -1,7 +1,7 @@
 package org.wink.service.impl;
 
 import org.springframework.stereotype.Component;
-import org.wink.service.DummyService;
+import org.wink.api.DummyService;
 
 @Component("dummyService")
 public class DummyServiceImpl implements DummyService {

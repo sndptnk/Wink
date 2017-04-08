@@ -1,4 +1,4 @@
-package org.wink.service;
+package org.wink.api;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;

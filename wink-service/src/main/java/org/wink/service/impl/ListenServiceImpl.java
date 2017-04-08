@@ -5,8 +5,8 @@ import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import org.wink.service.ListenService;
-import org.wink.service.model.PubNubTopic;
+import org.wink.api.ListenService;
+import org.wink.api.model.PubNubTopic;
 
 import com.pubnub.api.PNConfiguration;
 import com.pubnub.api.PubNub;

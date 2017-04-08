@@ -6,10 +6,10 @@ import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-import org.wink.service.LandingService;
+import org.wink.api.LandingService;
+import org.wink.api.model.TokenPayload;
 import org.wink.service.OAuthService;
 import org.wink.service.model.Credentials;
-import org.wink.service.model.TokenPayload;
 
 @Component("landingService")
 public class LandingServiceImpl implements LandingService {

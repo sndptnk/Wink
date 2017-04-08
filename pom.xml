@@ -84,11 +84,6 @@
 			</dependency>
 			<dependency>
 				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-rt-transports-http</artifactId>
-				<version>${cxf.ver}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.cxf</groupId>
 				<artifactId>cxf-core</artifactId>
 				<version>${cxf.ver}</version>
 			</dependency>
@@ -127,6 +122,16 @@
 				<groupId>org.webjars</groupId>
 				<artifactId>swagger-ui</artifactId>
 				<version>2.1.8-M1</version>
+			</dependency>
+			<dependency>
+				<groupId>com.smart.funnel</groupId>
+				<artifactId>wink-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.smart.funnel</groupId>
+				<artifactId>wink-api</artifactId>
+				<version>${project.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -185,5 +190,6 @@
 	<modules>
 		<module>wink-app</module>
 		<module>wink-service</module>
+		<module>wink-api</module>
 	</modules>
 </project>
