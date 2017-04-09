@@ -133,6 +133,11 @@
 				<artifactId>wink-api</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.smart.funnel</groupId>
+				<artifactId>wink-contract</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<build>
@@ -191,5 +196,6 @@
 		<module>wink-app</module>
 		<module>wink-service</module>
 		<module>wink-api</module>
+		<module>wink-contract</module>
 	</modules>
 </project>

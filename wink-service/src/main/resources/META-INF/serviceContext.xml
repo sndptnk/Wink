@@ -22,8 +22,6 @@
 	</bean>
 	<bean id="jaxbJsonProvider"
 		class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider" />
-	<!-- <bean id="jsonProvider" class="org.apache.cxf.jaxrs.provider.json.JSONProvider" /> -->
-	<bean id="swagger2Feature" class="org.apache.cxf.jaxrs.swagger.Swagger2Feature" />
 	<jaxrs:server id="winkServer" address="/wink">
 		<jaxrs:serviceBeans>
 			<ref bean="dummyService" />
@@ -38,15 +36,12 @@
 		<jaxrs:outInterceptors>
 			<bean class="org.apache.cxf.interceptor.LoggingOutInterceptor" />
 		</jaxrs:outInterceptors>
-		<jaxrs:features>
-			<ref bean="swagger2Feature" />
-		</jaxrs:features>
 	</jaxrs:server>
 
 	<bean id="oAuthService" class="org.apache.cxf.jaxrs.client.JAXRSClientFactory"
 		factory-method="create">
 		<constructor-arg index="0" name="baseAddress" type="java.lang.String" value="${winkUrl}" />
-		<constructor-arg index="1" name="cls" type="java.lang.Class" value="org.wink.service.OAuthService" />
+		<constructor-arg index="1" name="cls" type="java.lang.Class" value="org.wink.contract.OAuthService" />
 		<constructor-arg index="2" name="providers" type="java.util.List">
 			<util:list>
 				<ref bean="jaxbJsonProvider" />

@@ -1,4 +1,4 @@
-package org.wink.service;
+package org.wink.contract;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -6,8 +6,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.wink.api.model.TokenPayload;
-import org.wink.service.model.Credentials;
+import org.wink.contract.model.Credentials;
+import org.wink.contract.model.TokenPayload;
 
 @Path("/oauth2")
 @Produces(MediaType.APPLICATION_JSON)

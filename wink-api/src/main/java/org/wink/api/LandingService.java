@@ -8,8 +8,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.wink.api.model.TokenPayload;
-
 
 @Path("/landing")
 @Produces(MediaType.APPLICATION_JSON)
@@ -17,5 +15,9 @@ import org.wink.api.model.TokenPayload;
 public interface LandingService {
 	
 	@GET
-	public TokenPayload getAccess(@QueryParam("state") String state, @QueryParam("code") String code);
+	public String getAccess(@QueryParam("state") String state, 
+			@QueryParam("code") String code, 
+			@QueryParam("refreshToken") String refreshToken,
+			@QueryParam("userName") String userName,
+			@QueryParam("password") String password);
 }

@@ -3,13 +3,15 @@ package org.wink.service.impl;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.wink.api.LandingService;
-import org.wink.api.model.TokenPayload;
-import org.wink.service.OAuthService;
-import org.wink.service.model.Credentials;
+import org.wink.contract.OAuthService;
+import org.wink.contract.model.Credentials;
+import org.wink.contract.model.TokenPayload;
+
 
 @Component("landingService")
 public class LandingServiceImpl implements LandingService {
@@ -22,19 +24,27 @@ public class LandingServiceImpl implements LandingService {
 	OAuthService oAuthService;
 
 	@Override
-	public TokenPayload getAccess(String state, String code) {
+	public String getAccess(String state, String code, String refreshToken, String userName, String password) {
 		try {
 			Credentials credentials = new Credentials();
 			credentials.setClientSecret(clientSecret);
-			credentials.setCode(code);
-			credentials.setGrantType("authorization_code");
+			if(StringUtils.isNotEmpty(code)) {
+				credentials.setCode(code);
+				credentials.setGrantType("authorization_code");
+			} else if(StringUtils.isNotEmpty(refreshToken)) {
+				credentials.setRefreshToken(refreshToken);
+				credentials.setGrantType("refresh_token");
+			} else if(StringUtils.isNotEmpty(userName) && StringUtils.isNotEmpty(password)) {
+				credentials.setUserName(userName);
+				credentials.setPassword(password);
+				credentials.setGrantType("password");
+			}
 			TokenPayload payload = oAuthService.getToken(credentials);
-			return payload;
+			return payload.getData().getAccessToken();
 		} catch(WebApplicationException ex) {
 		  Response r = ex.getResponse();
 		  String message = ex.getMessage();
 		}
 		return null;
 	}
-
 }
