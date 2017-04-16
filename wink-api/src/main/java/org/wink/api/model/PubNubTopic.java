@@ -1,5 +1,7 @@
 package org.wink.api.model;
 
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -9,18 +11,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.NONE)
 public class PubNubTopic {
 
-	@XmlElement(name = "topic")
-	private String topic;
+	@XmlElement(name = "topics")
+	private List<String> topics;
 
 	@XmlElement(name = "subscriberKey")
 	private String subscriberKey;
 
-	public String getTopic() {
-		return topic;
+	public List<String> getTopics() {
+		return topics;
 	}
 
-	public void setTopic(String topic) {
-		this.topic = topic;
+	public void setTopic(List<String> topics) {
+		this.topics = topics;
 	}
 
 	public String getSubscriberKey() {

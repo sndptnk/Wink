@@ -21,8 +21,7 @@ public class ListenServiceImpl implements ListenService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ListenServiceImpl.class);
 	@Override
 	public void listen(PubNubTopic topic) {
-		PNConfiguration pnConfiguration = new PNConfiguration();
-		pnConfiguration.setSubscribeKey(topic.getSubscriberKey());
+		PNConfiguration pnConfiguration = new PNConfiguration().setSubscribeKey(topic.getSubscriberKey());
 		PubNub pubnub = new PubNub(pnConfiguration);
 		pubnub.addListener(new SubscribeCallback() {
 			@Override
@@ -30,9 +29,7 @@ public class ListenServiceImpl implements ListenService {
 				LOGGER.info("PubNub "+pubnub.toString());
 				LOGGER.info("PNStatus "+status.toString());
 				if (status.getCategory() == PNStatusCategory.PNUnexpectedDisconnectCategory) {
-					// This event happens when radio / connectivity is lost
-				}
-				else if (status.getCategory() == PNStatusCategory.PNConnectedCategory) {
+				} else if (status.getCategory() == PNStatusCategory.PNConnectedCategory) {
 					// Connect event. You can do stuff like publish, and know
 					// you'll get it.
 					// Or just use the connected event to confirm you are
@@ -74,6 +71,6 @@ public class ListenServiceImpl implements ListenService {
 			}
 		});
 
-		pubnub.subscribe().channels(Arrays.asList(topic.getTopic())).execute();
+		pubnub.subscribe().channels(topic.getTopics()).execute();
 	}
 }

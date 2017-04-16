@@ -9,7 +9,7 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
-	<!-- <import resource="classpath:META-INF/clientBus.xml" /> -->
+	<import resource="classpath:META-INF/clientContext.xml" />
 
 	<context:component-scan base-package="org.wink" />
 	<bean
@@ -20,12 +20,12 @@
 			</list>
 		</property>
 	</bean>
-	<bean id="jaxbJsonProvider"
-		class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider" />
+	<!-- <bean id="jaxbJsonProvider" class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider" /> -->
 	<jaxrs:server id="winkServer" address="/wink">
 		<jaxrs:serviceBeans>
 			<ref bean="dummyService" />
 			<ref bean="landingService" />
+			<ref bean="listenService" />
 		</jaxrs:serviceBeans>
 		<jaxrs:providers>
 			<ref bean="jaxbJsonProvider" />
@@ -37,16 +37,4 @@
 			<bean class="org.apache.cxf.interceptor.LoggingOutInterceptor" />
 		</jaxrs:outInterceptors>
 	</jaxrs:server>
-
-	<bean id="oAuthService" class="org.apache.cxf.jaxrs.client.JAXRSClientFactory"
-		factory-method="create">
-		<constructor-arg index="0" name="baseAddress" type="java.lang.String" value="${winkUrl}" />
-		<constructor-arg index="1" name="cls" type="java.lang.Class" value="org.wink.contract.OAuthService" />
-		<constructor-arg index="2" name="providers" type="java.util.List">
-			<util:list>
-				<ref bean="jaxbJsonProvider" />
-			</util:list>
-		</constructor-arg>
-		<constructor-arg index="3" name="configLocation" type="java.lang.String" value="classpath:META-INF/clientBus.xml"/>
-	</bean>
 </beans>

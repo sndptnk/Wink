@@ -4,6 +4,9 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.cxf.jaxrs.client.Client;
+import org.apache.cxf.jaxrs.client.JAXRSClientFactory;
+import org.apache.cxf.jaxrs.client.WebClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -32,6 +35,7 @@ public class LandingServiceImpl implements LandingService {
 				credentials.setCode(code);
 				credentials.setGrantType("authorization_code");
 			} else if(StringUtils.isNotEmpty(refreshToken)) {
+				credentials.setClientId(clientid);
 				credentials.setRefreshToken(refreshToken);
 				credentials.setGrantType("refresh_token");
 			} else if(StringUtils.isNotEmpty(userName) && StringUtils.isNotEmpty(password)) {
@@ -39,12 +43,21 @@ public class LandingServiceImpl implements LandingService {
 				credentials.setPassword(password);
 				credentials.setGrantType("password");
 			}
+			Client client = WebClient.client(oAuthService);
+//			WebClient httpClient = WebClient.fromClient(client);
+//			OAuthService tsOAuthService = JAXRSClientFactory.fromClient(client, OAuthService.class);
+//			TokenPayload payload = tsOAuthService.getToken(credentials);
 			TokenPayload payload = oAuthService.getToken(credentials);
 			return payload.getData().getAccessToken();
 		} catch(WebApplicationException ex) {
 		  Response r = ex.getResponse();
 		  String message = ex.getMessage();
 		}
+		return null;
+	}
+
+	@Override
+	public String getUser(String userId) {
 		return null;
 	}
 }
