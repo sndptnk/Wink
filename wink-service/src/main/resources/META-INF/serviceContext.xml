@@ -26,6 +26,7 @@
 			<ref bean="dummyService" />
 			<ref bean="landingService" />
 			<ref bean="listenService" />
+			<ref bean="orchestrationService"/>
 		</jaxrs:serviceBeans>
 		<jaxrs:providers>
 			<ref bean="jaxbJsonProvider" />

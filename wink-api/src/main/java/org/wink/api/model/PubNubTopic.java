@@ -14,6 +14,9 @@ public class PubNubTopic {
 	@XmlElement(name = "topics")
 	private List<String> topics;
 
+	@XmlElement(name = "topicType")
+	private String topicType;
+
 	@XmlElement(name = "subscriberKey")
 	private String subscriberKey;
 
@@ -21,8 +24,16 @@ public class PubNubTopic {
 		return topics;
 	}
 
-	public void setTopic(List<String> topics) {
+	public void setTopics(List<String> topics) {
 		this.topics = topics;
+	}
+
+	public String getTopicType() {
+		return topicType;
+	}
+
+	public void setTopicType(String topicType) {
+		this.topicType = topicType;
 	}
 
 	public String getSubscriberKey() {
