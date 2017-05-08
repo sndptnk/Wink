@@ -1,12 +1,23 @@
 package org.wink.contract.model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "userdata", namespace = "org.wink.service.model")
+@XmlAccessorType(XmlAccessType.NONE)
 public class UserData {
+	@XmlElement(name = "first_name")
 	private String first_name;
 
+	@XmlElement(name = "confirmed")
 	private String confirmed;
 
+	@XmlElement(name = "subscription")
 	private Subscription subscription;
 
+	@XmlElement(name = "email")
 	private String email;
 
 	private LastReading last_reading;

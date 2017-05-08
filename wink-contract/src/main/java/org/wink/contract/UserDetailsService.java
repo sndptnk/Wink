@@ -17,4 +17,8 @@ public interface UserDetailsService {
 	@Path("/me")
 	@GET
 	WinkUser getUser(@HeaderParam("Authorization") String authCode, @HeaderParam("client_id") String client_id, @HeaderParam("client_secret") String client_secret);
+
+	@Path("/me/wink_devices")
+	@GET
+	WinkUser getWinkDevices(@HeaderParam("Authorization") String authCode, @HeaderParam("client_id") String client_id, @HeaderParam("client_secret") String client_secret);
 }
