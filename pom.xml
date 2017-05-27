@@ -22,12 +22,6 @@
 			</releases>
 		</repository>
 	</repositories>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.2.RELEASE</version>
-		<relativePath />
-	</parent>
 
 	<properties>
 		<docker.image.prefix>smartelligynt</docker.image.prefix>
@@ -206,21 +200,30 @@
 					</executions>
 				</plugin>
 				<plugin>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-maven-plugin</artifactId>
-				</plugin>
-				<plugin>
 					<groupId>com.spotify</groupId>
 					<artifactId>docker-maven-plugin</artifactId>
 					<version>0.4.11</version>
+					<executions>
+						<execution>
+							<phase>package</phase>
+							<goals>
+								<goal>build</goal>
+							</goals>
+						</execution>
+					</executions>
 					<configuration>
-						<dockerDirectory>${project.basedir}</dockerDirectory>
+						<dockerDirectory>${basedir}/src/main/docker</dockerDirectory>
 						<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-						<!-- <dockerDirectory>src/main/docker</dockerDirectory> -->
+						<serverId>docker-hub</serverId>
+						<registryUrl>https://hub.docker.com/r/smartelligynt</registryUrl>
+						<imageTags>
+							<imageTag>${project.version}</imageTag>
+						</imageTags>
 						<resources>
 							<resource>
 								<targetPath>/</targetPath>
 								<directory>${project.build.directory}</directory>
+								<include>src/main/docker/Dockerfile</include>
 								<include>${project.build.finalName}.war</include>
 							</resource>
 						</resources>
